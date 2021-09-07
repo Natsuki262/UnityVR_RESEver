@@ -4,15 +4,56 @@ using UnityEngine;
 
 public class MouseLock : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    // Start is called before the first frame update[
+
+    //ˆÚ“®—p•Ï”
+    float charaMoveX, charaMoveY, charaMoveZ;
+
+    //ˆÚ“®‘¬“x
+    [SerializeField]
+    float charaSpeed;
+
+    //cameraæ“¾
+    [SerializeField]
+    GameObject playerCamera;
+
+    Quaternion cameraRot, charactorRot;
+    [SerializeField]
+    float cameraACX,cameraACY;
     void Start()
     {
-        
+        //ƒQ[ƒ€ŠJn‚ÌŒ»İ‚ÌŠp“x‚ğŠi”[
+        cameraRot = playerCamera.transform.localRotation;
+        charactorRot=transform.localRotation;
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        float xRot = Input.GetAxisRaw("Mouse X");
+        float yRot = Input.GetAxisRaw("Mouse Y");
+        cameraRot *= Quaternion.Euler(-yRot, 0, 0);
+        charactorRot *= Quaternion.Euler(0, xRot, 0);
+
+        playerCamera.transform.localRotation = cameraRot;
+        transform.localRotation = charactorRot;
+
+    }
+    private void FixedUpdate()
+    {
+        charaMoveX = 0;
+        charaMoveY = 0;
+        charaMoveZ = 0;
+
+        charaMoveX = Input.GetAxis("Horizontal")*charaSpeed;
+        charaMoveZ = Input.GetAxisRaw("Vertical")*charaSpeed;
+
+        //transform.position += new Vector3(charaMoveX, 0, charaMoveZ);
+        transform.position += playerCamera.transform.forward * charaMoveZ + playerCamera.transform.right * charaMoveX;
+
     }
 }
