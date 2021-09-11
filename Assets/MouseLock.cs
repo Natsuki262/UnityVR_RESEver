@@ -24,6 +24,10 @@ public class MouseLock : MonoBehaviour
 
     //カーソル非表示表示状態
     bool cusorOnof = true;
+
+    //カメラの角度制限
+    [SerializeField]
+    float minAngle, maxAngle;
     void Start()
     {
         //ゲーム開始時の現在の角度を格納
@@ -41,11 +45,16 @@ public class MouseLock : MonoBehaviour
         float yRot = Input.GetAxisRaw("Mouse Y") * cameraACY;
         cameraRot *= Quaternion.Euler(-yRot, 0, 0);
         charactorRot *= Quaternion.Euler(0, xRot, 0);
+        //指定の数値内にcameraRotを制限する
+        cameraRot = ClampRotation(cameraRot);
 
         playerCamera.transform.localRotation = cameraRot;
         transform.localRotation = charactorRot;
 
+        
         UpdateCursolONOFF();
+
+
 
 
     }
@@ -62,6 +71,7 @@ public class MouseLock : MonoBehaviour
         transform.position += playerCamera.transform.forward * charaMoveZ + playerCamera.transform.right * charaMoveX;
 
     }
+    //カーソルをオンオフ切り替える関数 
     public void UpdateCursolONOFF()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -84,5 +94,26 @@ public class MouseLock : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
+    }
+    //プレイヤーのカメラ角度制限関数
+    public Quaternion ClampRotation(Quaternion q)
+    {
+        //q=X,Y,Z,W(xyzベクトル（量と向き）：Wはスカラー（座標とは無関係の量：回転するあとで調べる）
+        q.x /= q.w;
+        q.y /= q.w;
+        q.z /= q.w;
+        q.w /= 1f;
+        //四次元座標Qutaternionを三次元系で使えるようにするため必要　
+
+        float angleX = Mathf.Atan(q.x) * Mathf.Rad2Deg * 2f;
+        //Quaternionからオイラーに変換するために必要らしいここもあとで
+        //Mathfというのは三角関数　これは三角関数から角度を求めている　が
+        //求めた角度がラジアン値なので、度数に変換している処理
+
+        angleX = Mathf.Clamp(angleX, minAngle, maxAngle);
+        //ClanmpはXの値を引数に設定した値まで下げる処理
+        q.x = Mathf.Tan(angleX * Mathf.Deg2Rad * 0.5f);
+        //角度から三角関数を求める度数らラジアンに戻す処理
+        return q;
     }
 }
