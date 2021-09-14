@@ -25,6 +25,7 @@ public class MouseLock : MonoBehaviour
     //カーソル非表示表示状態
     bool cusorOnof = true;
 
+    Rigidbody _rigidbody;
     //カメラの角度制限
     [SerializeField]
     float minAngle, maxAngle;
@@ -41,8 +42,9 @@ public class MouseLock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float xRot = Input.GetAxisRaw("Mouse X") * cameraACX;
-        float yRot = Input.GetAxisRaw("Mouse Y") * cameraACY;
+
+        float xRot = Input.GetAxisRaw("Mouse X") * cameraACY;
+        float yRot = Input.GetAxisRaw("Mouse Y") * cameraACX;
         cameraRot *= Quaternion.Euler(-yRot, 0, 0);
         charactorRot *= Quaternion.Euler(0, xRot, 0);
         //指定の数値内にcameraRotを制限する
@@ -51,7 +53,7 @@ public class MouseLock : MonoBehaviour
         playerCamera.transform.localRotation = cameraRot;
         transform.localRotation = charactorRot;
 
-        
+
         UpdateCursolONOFF();
 
 
@@ -60,15 +62,25 @@ public class MouseLock : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        _rigidbody = GetComponent<Rigidbody>();
         charaMoveX = 0;
         charaMoveY = 0;
         charaMoveZ = 0;
 
-        charaMoveX = Input.GetAxis("Horizontal") * charaSpeed;
-        charaMoveZ = Input.GetAxisRaw("Vertical") * charaSpeed;
-
+        //charaMoveX = Input.GetAxis("Horizontal") * charaSpeed;
+        //charaMoveZ = Input.GetAxisRaw("Vertical") * charaSpeed;
+        float xVec = Input.GetAxis("Horizontal");
+        float zVec = Input.GetAxis("Vertical");
         //transform.position += new Vector3(charaMoveX, 0, charaMoveZ);
-        transform.position += playerCamera.transform.forward * charaMoveZ + playerCamera.transform.right * charaMoveX;
+        //transform.position += playerCamera.transform.forward * charaMoveZ + playerCamera.transform.right * charaMoveX;
+        //_rigidbody.AddForce(playerCamera.transform.forward,1);//あとで直す
+        //_rigidbody.AddForce(playerCamera.transform.transform.forward *charaSpeed );
+        //_rigidbody.AddForce(charaMoveX, 0, charaMoveZ);
+        Vector3 camVec = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z).normalized;
+        Vector3 rightVec = new Vector3(Camera.main.transform.right.x, 0, Camera.main.transform.right.z);
+        Vector3 input = new Vector3(xVec, 0, zVec);
+        Vector3 moveVec = (camVec * input.z + rightVec * input.x).normalized;
+        _rigidbody.velocity = moveVec * charaSpeed;
 
     }
     //カーソルをオンオフ切り替える関数 
