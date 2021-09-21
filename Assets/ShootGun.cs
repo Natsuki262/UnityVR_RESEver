@@ -27,17 +27,15 @@ public class ShootGun : MonoBehaviour
     {
         //RayÇÃèâä˙ê›íË
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        transform.rotation = Quaternion.LookRotation(ray.direction);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 1f, LayerMask.GetMask("enemy")))
-        {
-            Destroy(this.gameObject);
-
-        }
+       Quaternion quaternion = Quaternion.LookRotation(ray.direction);
+        float distance = 50;
+       
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
+            
         }
+       
 
 
     }
