@@ -43,7 +43,7 @@ public class MouseLock : MonoBehaviour
     void Update()
     {
 
-        float xRot = Input.GetAxisRaw("Mouse X") * cameraACY;
+        /*float xRot = Input.GetAxisRaw("Mouse X") * cameraACY;
         float yRot = Input.GetAxisRaw("Mouse Y") * cameraACX;
         cameraRot *= Quaternion.Euler(-yRot,0, 0);
         charactorRot *= Quaternion.Euler(0,xRot, 0);
@@ -51,7 +51,7 @@ public class MouseLock : MonoBehaviour
         cameraRot = ClampRotation(cameraRot);
 
         playerCamera.transform.localRotation = cameraRot;
-        transform.localRotation = charactorRot;
+        transform.localRotation = charactorRot;*/
 
 
         UpdateCursolONOFF();
@@ -107,7 +107,7 @@ public class MouseLock : MonoBehaviour
         }
 
     }
-    //プレイヤーのカメラ角度制限関数
+    //プレイヤーのカメラ角度制限関数難しかったので今回は使っていません
     public Quaternion ClampRotation(Quaternion q)
     {
         //q=X,Y,Z,W(xyzベクトル（量と向き）：Wはスカラー（座標とは無関係の量：回転するあとで調べる）
