@@ -45,8 +45,8 @@ public class MouseLock : MonoBehaviour
 
         float xRot = Input.GetAxisRaw("Mouse X") * cameraACY;
         float yRot = Input.GetAxisRaw("Mouse Y") * cameraACX;
-        cameraRot *= Quaternion.Euler(-yRot, 0, 0);
-        charactorRot *= Quaternion.Euler(0, xRot, 0);
+        cameraRot *= Quaternion.Euler(-yRot,0, 0);
+        charactorRot *= Quaternion.Euler(0,xRot, 0);
         //éwíËÇÃêîílì‡Ç…cameraRotÇêßå¿Ç∑ÇÈ
         cameraRot = ClampRotation(cameraRot);
 
