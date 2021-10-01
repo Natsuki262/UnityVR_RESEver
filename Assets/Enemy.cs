@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullethit : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject hitObject;
     void Start()
     {
         
@@ -16,12 +15,8 @@ public class bullethit : MonoBehaviour
     {
         
     }
-
     private void OnTriggerEnter(Collider other)
     {
-        hitObject = other.gameObject.gameObject;
-        Debug.Log(hitObject);
-        Destroy(this.gameObject);
-        Debug.Log("hit");
+        Destroy(gameObject);
     }
 }
