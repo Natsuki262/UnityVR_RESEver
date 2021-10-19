@@ -266,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 6804990658058999119, guid: 65c9f6563c561ee4e8905d1e6a32548b, type: 3}
   bulletPrefab: {fileID: 0}
-  bulletPower: 300
+  bulletPower: 500
   muzzle: {fileID: 1525464595}
 --- !u!1 &482835642
 GameObject:
