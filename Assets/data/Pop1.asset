@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37f4e46693d20084e9e6d8a4462f1ac3, type: 3}
-  m_Name: StopTarget
+  m_Script: {fileID: 11500000, guid: 84973639d5f72f249aa187e95e90204e, type: 3}
+  m_Name: Pop1
   m_EditorClassIdentifier: 
-  targetPrefab: {fileID: 7102966707618245495, guid: 5c3299820573ea241842ce0db7bf6989, type: 3}
-  targetPosition: {x: 15, y: 1, z: 10}
+  tagetIDList: []
