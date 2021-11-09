@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class ShootGun : MonoBehaviour
 {
+    /// <summary>íe</summary>
     [SerializeField]
     private GameObject bullet;
-    //èeå˚
+    
+    /// <summary>
+    ///íeä€ÇÃèâë¨
+    /// </summary>
     [SerializeField]
-    private Transform bulletPrefab;
-    //íeÇîÚÇŒÇ∑óÕ
-    [SerializeField]
-    private float bulletPower = 300f;
-
+    private float bulletPower;
+    /// <summary>
+    /// É}ÉYÉãÇÃà íu
+    /// </summary>
     [SerializeField]
     private Transform muzzle;
 
@@ -28,7 +31,7 @@ public class ShootGun : MonoBehaviour
         //RayÇÃèâä˙ê›íË
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
        Quaternion quaternion = Quaternion.LookRotation(ray.direction);
-        float distance = 50;
+       
        
         if (Input.GetMouseButtonDown(0))
         {
@@ -41,7 +44,7 @@ public class ShootGun : MonoBehaviour
     }
     void Shoot()
     {
-        var bulletInstance = Instantiate<GameObject>(bullet, muzzle.position, muzzle.rotation);
+        GameObject bulletInstance = Instantiate<GameObject>(bullet, muzzle.position, muzzle.rotation);
         bulletInstance.GetComponent<Rigidbody>().AddForce(bulletInstance.transform.forward * bulletPower);
         Destroy(bulletInstance, 5f);
     }
