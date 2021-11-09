@@ -9,21 +9,22 @@ public class TestPop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject obj = Instantiate(popPattern.TargetIDList[0].TargetPrefab);
-        obj.transform.position = popPattern.TargetIDList[0].TargetPosition;
-
+        /*GameObject obj = Instantiate(popPattern.TargetIDList[0].TargetPrefab);
+        obj.transform.position = popPattern.TargetIDList[0].TargetPosition;*/
+        Pop();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     void Pop()
     {
-        foreach ( TargetInstanceData tid in popPattern.TargetIDList)
+        foreach (TargetInstanceData tid in popPattern.TargetIDList)
         {
-
+            GameObject obj = Instantiate(tid.TargetPrefab);
+            obj.transform.position = tid.TargetPosition;
         }
     }
 }
