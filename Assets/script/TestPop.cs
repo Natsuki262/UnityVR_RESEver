@@ -19,4 +19,11 @@ public class TestPop : MonoBehaviour
     {
         
     }
+    void Pop()
+    {
+        foreach ( popPattern in popPattern.TargetIDList)
+        {
+
+        }
+    }
 }
