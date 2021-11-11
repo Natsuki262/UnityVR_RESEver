@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7129157115266116507}
   - component: {fileID: 7117011527161552959}
   - component: {fileID: 7094232174116913661}
+  - component: {fileID: 1902197410595162445}
   m_Layer: 0
   m_Name: StopTarget
   m_TagString: Untagged
@@ -90,9 +91,21 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7102966707618245495}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: dff5b14c21a72844db69f2eb20362be9, type: 3}
+--- !u!114 &1902197410595162445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102966707618245495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674ee521727ba484a8406c9c9ab023be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

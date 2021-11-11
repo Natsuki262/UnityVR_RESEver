@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: StopTarget 1
   m_EditorClassIdentifier: 
   targetPrefab: {fileID: 7102966707618245495, guid: 5c3299820573ea241842ce0db7bf6989, type: 3}
-  targetPosition: {x: 5, y: 2, z: 10}
+  targetPosition: {x: 5, y: 1, z: 10}
