@@ -15,12 +15,12 @@ public class SoundManager : MonoBehaviour
     public enum  bgm_Types
     {
         //BGM—ñ‹“
-
+        
     }
     //SEŠÇ—
     public enum se_Types
     {
-
+        fire,
     }
     //AudioClip
     [SerializeField]
@@ -66,5 +66,22 @@ public class SoundManager : MonoBehaviour
     void Update()
     {
         
+    }
+    public void PlaySE(se_Types se_Types)
+    {
+        int index = (int)se_Types;
+        if (index<0||m_seClips.Length<=index)
+        {
+            return;
+        }
+        foreach (AudioSource source in m_SeSources)
+        {
+            if(false==source.isPlaying)
+            {
+                source.clip = m_seClips[index];
+                source.Play();
+                return;
+            }
+        }
     }
 }

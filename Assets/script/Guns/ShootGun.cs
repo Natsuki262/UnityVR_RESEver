@@ -36,6 +36,7 @@ public class ShootGun : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
+            SoundManager.soundInstance.PlaySE(SoundManager.se_Types.fire);
             
         }
        
